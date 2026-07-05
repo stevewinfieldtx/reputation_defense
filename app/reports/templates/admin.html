@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Reputation Defense — Admin</title>
+<style>
+  body { font: 15px/1.5 'Segoe UI', Helvetica, Arial, sans-serif; color: #1a2332; background: #f6f5f2; padding: 32px; }
+  h1 { font-size: 22px; margin-bottom: 16px; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #e4e7ec; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #e4e7ec; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #5b6472; }
+  .st { font-size: 12px; padding: 2px 10px; border-radius: 10px; font-weight: 600; }
+  .st.complete { background: #e8f5ee; color: #1e7f4f; }
+  .st.error { background: #fbeeec; color: #b23a2e; }
+  .st.pending, .st.collecting, .st.analyzing { background: #fdf3e0; color: #9a6b0f; }
+  a { color: #b23a2e; }
+</style>
+</head>
+<body>
+  <h1>Audits ({{ audits|length }})</h1>
+  <table>
+    <tr><th>Created</th><th>Business</th><th>City</th><th>Vertical</th><th>Status</th><th>Monthly opportunity</th><th></th></tr>
+    {% for a in audits %}
+    <tr>
+      <td>{{ a.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+      <td>{{ a.business_name }}{% if a.demo %} <em>(demo)</em>{% endif %}</td>
+      <td>{{ a.city }}</td>
+      <td>{{ a.vertical }}</td>
+      <td><span class="st {{ a.status }}">{{ a.status }}</span></td>
+      <td>{% if a.revenue %}${{ '{:,.0f}'.format(a.revenue.total_monthly) }}{% endif %}</td>
+      <td>
+        {% if a.status == 'complete' %}<a href="/reports/{{ a.id }}">report</a>
+        {% else %}<a href="/audits/{{ a.id }}">status</a>{% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>

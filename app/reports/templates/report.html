@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reputation Defense Audit — {{ audit.business_name }}</title>
+<style>
+  :root {
+    --ink: #1a2332; --muted: #5b6472; --line: #e4e7ec;
+    --accent: #b23a2e; --accent-soft: #fbeeec;
+    --good: #1e7f4f; --good-soft: #e8f5ee;
+    --bad: #b23a2e; --bad-soft: #fbeeec;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { font: 16px/1.6 Georgia, 'Times New Roman', serif; color: var(--ink); background: #f6f5f2; }
+  .page { max-width: 880px; margin: 0 auto; padding: 48px 32px; background: #fff; }
+  h1, h2, h3, .sans { font-family: 'Segoe UI', -apple-system, Helvetica, Arial, sans-serif; }
+  h2 { font-size: 22px; margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--ink); }
+  .kicker { text-transform: uppercase; letter-spacing: 2px; font-size: 12px; color: var(--accent); font-weight: 600; }
+  header h1 { font-size: 34px; margin: 6px 0 2px; }
+  header .sub { color: var(--muted); }
+  .hero { display: flex; gap: 16px; margin-top: 28px; flex-wrap: wrap; }
+  .stat { flex: 1 1 150px; border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; }
+  .stat .n { font-size: 30px; font-weight: 700; font-family: 'Segoe UI', sans-serif; }
+  .stat .l { font-size: 13px; color: var(--muted); }
+  .stat.loss { background: var(--accent); color: #fff; border: none; }
+  .stat.loss .l { color: #f4d5d1; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 15px; }
+  th { text-align: left; font-family: 'Segoe UI', sans-serif; font-size: 13px; text-transform: uppercase;
+       letter-spacing: 1px; color: var(--muted); padding: 8px 10px; border-bottom: 2px solid var(--ink); }
+  td { padding: 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td.amt { text-align: right; font-weight: 700; white-space: nowrap; font-family: 'Segoe UI', sans-serif; }
+  .formula { font-size: 13px; color: var(--muted); font-family: Consolas, monospace; }
+  .note { font-size: 14px; color: var(--muted); }
+  .cluster { border: 1px solid var(--line); border-left: 5px solid; border-radius: 6px; padding: 14px 18px; margin: 12px 0; }
+  .cluster.negative { border-left-color: var(--bad); background: var(--bad-soft); }
+  .cluster.positive { border-left-color: var(--good); background: var(--good-soft); }
+  .cluster h3 { font-size: 16px; }
+  .cluster .share { float: right; font-size: 13px; color: var(--muted); font-family: 'Segoe UI', sans-serif; }
+  blockquote { margin: 8px 0 0 0; padding-left: 12px; border-left: 3px solid rgba(0,0,0,.15);
+               font-style: italic; font-size: 14.5px; }
+  .bar-row { display: grid; grid-template-columns: 190px 1fr 70px; gap: 10px; align-items: center;
+             margin: 8px 0; font-family: 'Segoe UI', sans-serif; font-size: 14px; }
+  .bar-track { background: #eef0f3; border-radius: 4px; height: 18px; }
+  .bar-fill { height: 18px; border-radius: 4px; background: var(--muted); }
+  .bar-row.you .bar-fill { background: var(--accent); }
+  .bar-row.you { font-weight: 700; }
+  ol.fixes { padding-left: 0; counter-reset: fix; list-style: none; }
+  ol.fixes li { counter-increment: fix; margin: 16px 0; padding-left: 52px; position: relative; }
+  ol.fixes li::before { content: counter(fix); position: absolute; left: 0; top: 2px; width: 34px; height: 34px;
+    border-radius: 50%; background: var(--ink); color: #fff; display: flex; align-items: center;
+    justify-content: center; font-family: 'Segoe UI', sans-serif; font-weight: 700; }
+  .impact { font-size: 11px; padding: 2px 8px; border-radius: 10px; text-transform: uppercase;
+            letter-spacing: 1px; font-family: 'Segoe UI', sans-serif; font-weight: 600; vertical-align: 2px; }
+  .impact.high { background: var(--accent-soft); color: var(--accent); }
+  .impact.medium { background: #fdf3e0; color: #9a6b0f; }
+  .impact.low { background: #eef0f3; color: var(--muted); }
+  .assumptions { background: #f6f5f2; border: 1px solid var(--line); border-radius: 8px;
+                 padding: 16px 20px; font-size: 14px; margin-top: 12px; }
+  .assumptions td { border: none; padding: 4px 8px 4px 0; }
+  footer { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--line);
+           font-size: 13px; color: var(--muted); }
+  @media print {
+    body { background: #fff; }
+    .page { padding: 0; max-width: none; }
+    .cluster, .stat, tr, ol.fixes li { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="kicker">Reputation Defense &middot; Review Intelligence Audit{% if audit.demo %} &middot; Sample Report{% endif %}</div>
+  <h1>{{ audit.business_name }}</h1>
+  <div class="sub sans">{{ profile.address }} &middot; {{ profile.category }} &middot; Prepared {{ prepared_date }}</div>
+
+  <div class="hero sans">
+    <div class="stat"><div class="n">{{ '%.1f'|format(metrics.avg_rating) }}&#9733;</div><div class="l">Google rating ({{ metrics.total_reviews_on_profile }} reviews)</div></div>
+    <div class="stat"><div class="n">{{ metrics.unanswered_negative_12mo }}</div><div class="l">Unanswered negative reviews, last 12 mo</div></div>
+    <div class="stat"><div class="n">{{ '%.1f'|format(metrics.reviews_per_month_90d) }}/mo</div><div class="l">Review velocity (90 days)</div></div>
+    <div class="stat loss"><div class="n">{{ revenue.total_monthly|money }}</div><div class="l">Est. revenue left on the table, per month</div></div>
+  </div>
+</header>
+
+<h2>Executive summary</h2>
+<p>{{ analysis.executive_summary }}</p>
+<p class="note" style="margin-top:10px"><em>{{ analysis.overall_sentiment }}</em></p>
+
+<h2>Where the money is leaking</h2>
+<table>
+  <tr><th>Issue</th><th>How it's calculated</th><th style="text-align:right">Est. monthly loss</th></tr>
+  {% for item in revenue['items'] %}
+  <tr>
+    <td><strong>{{ item.title }}</strong><br><span class="note">{{ item.explanation }}</span></td>
+    <td><span class="formula">{{ item.formula }}</span></td>
+    <td class="amt">{{ item.monthly_loss|money }}</td>
+  </tr>
+  {% endfor %}
+  <tr>
+    <td colspan="2"><strong>Total estimated opportunity</strong></td>
+    <td class="amt">{{ revenue.total_monthly|money }}/mo &nbsp;&middot;&nbsp; {{ revenue.total_annual|money }}/yr</td>
+  </tr>
+</table>
+
+<div class="assumptions sans">
+  <strong>Assumptions used (every number is auditable):</strong>
+  <table>
+    <tr><td>Average transaction</td><td><strong>{{ revenue.assumptions.avg_transaction.value|money }}</strong></td><td class="note">{{ revenue.assumptions.avg_transaction.source }}</td></tr>
+    <tr><td>Monthly customers</td><td><strong>{{ '{:,.0f}'.format(revenue.assumptions.monthly_customers.value) }}</strong></td><td class="note">{{ revenue.assumptions.monthly_customers.source }}</td></tr>
+    <tr><td>Customer lifetime value</td><td><strong>{{ revenue.assumptions.customer_ltv.value|money }}</strong></td><td class="note">{{ revenue.assumptions.customer_ltv.source }}</td></tr>
+    <tr><td>Est. monthly revenue</td><td><strong>{{ revenue.monthly_revenue_estimate|money }}</strong></td><td class="note">avg transaction &times; monthly customers</td></tr>
+  </table>
+  <span class="note">Provide your real transaction and customer numbers and this report recalculates exactly — benchmarks are used only where marked.</span>
+</div>
+
+<h2>What customers are actually saying</h2>
+<p class="note">Themes extracted from {{ metrics.reviews_analyzed }} most recent reviews. Percentages are the share of same-sentiment reviews mentioning each theme; quotes are verbatim.</p>
+{% for c in analysis.clusters %}
+<div class="cluster {{ c.sentiment }}">
+  <span class="share sans">{{ '%.0f'|format(c.share_pct) }}% of {{ c.sentiment }} reviews</span>
+  <h3>{{ c.label }}</h3>
+  <p style="font-size:14.5px">{{ c.summary }}</p>
+  {% for q in c.quotes %}<blockquote>&ldquo;{{ q }}&rdquo;</blockquote>{% endfor %}
+</div>
+{% endfor %}
+
+<h2>The response gap</h2>
+<p>
+  You have responded to <strong>{{ '%.0f'|format(metrics.response_rate_pct) }}%</strong> of the reviews we analyzed.
+  <strong>{{ metrics.unanswered_negative_12mo }}</strong> negative reviews from the last 12 months have no owner reply
+  {%- if metrics.median_response_days is not none %}; when you do respond, the median turnaround is
+  <strong>{{ metrics.median_response_days }} day{{ 's' if metrics.median_response_days != 1 }}</strong>{% endif %}.
+  Every unanswered complaint is a permanent, public "we don't care" sign to the next prospect who reads it.
+</p>
+
+{% if analysis.spam_suspects %}
+<h2>Suspicious reviews flagged</h2>
+<p class="note">Flagged for patterns only — worth reviewing and reporting to Google if fake. Never auto-actioned.</p>
+<table>
+  <tr><th>Excerpt</th><th>Author</th><th>Why flagged</th></tr>
+  {% for s in analysis.spam_suspects %}
+  <tr><td>&ldquo;{{ s.excerpt }}&rdquo;</td><td>{{ s.author }}</td><td>{{ s.reasons|join('; ') }}</td></tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+{% if metrics.competitor_velocity %}
+<h2>You vs. the local competition</h2>
+<div class="sans">
+  {% set max_v = ([metrics.reviews_per_month_90d] + metrics.competitor_velocity|map(attribute='reviews_per_month')|list)|max %}
+  <p class="note" style="margin-bottom:10px">New Google reviews per month (last 90 days):</p>
+  <div class="bar-row you">
+    <div>{{ audit.business_name }}</div>
+    <div class="bar-track"><div class="bar-fill" style="width: {{ (100 * metrics.reviews_per_month_90d / max_v)|round(0) if max_v else 0 }}%"></div></div>
+    <div>{{ '%.1f'|format(metrics.reviews_per_month_90d) }}/mo</div>
+  </div>
+  {% for c in metrics.competitor_velocity %}
+  <div class="bar-row">
+    <div>{{ c.name }} ({{ c.rating }}&#9733;)</div>
+    <div class="bar-track"><div class="bar-fill" style="width: {{ (100 * c.reviews_per_month / max_v)|round(0) if max_v else 0 }}%"></div></div>
+    <div>{{ '%.1f'|format(c.reviews_per_month) }}/mo</div>
+  </div>
+  {% endfor %}
+</div>
+{% if analysis.competitor_takeaway %}<p style="margin-top:14px">{{ analysis.competitor_takeaway }}</p>{% endif %}
+{% endif %}
+
+<h2>Your priority fix list</h2>
+<ol class="fixes">
+  {% for f in analysis.top_fixes %}
+  <li>
+    <strong class="sans">{{ f.title }}</strong>
+    <span class="impact {{ f.impact }}">{{ f.impact }} impact</span>
+    <p style="font-size:14.5px; margin-top:4px">{{ f.why }}</p>
+  </li>
+  {% endfor %}
+</ol>
+
+<footer>
+  <p><strong>Methodology.</strong> Reviews collected from Google Maps ({{ metrics.reviews_analyzed }} most recent).
+  Response-gap, response-time and velocity statistics are computed directly from review timestamps.
+  Theme extraction and quote selection are AI-assisted and evidence-bound to the collected reviews.
+  Revenue estimates are directional, use the assumptions table above, and are calibrated conservatively
+  (rating impact uses the low end of the Harvard Business School rating-revenue findings).
+  This report is a diagnostic, not a financial guarantee.</p>
+  <p style="margin-top:8px">Reputation Defense &middot; report {{ audit.id[:8] }} &middot; generated {{ prepared_date }}</p>
+</footer>
+
+</div>
+</body>
+</html>

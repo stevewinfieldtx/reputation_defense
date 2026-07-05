@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reputation Defense — Start Your Audit</title>
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { font: 16px/1.6 'Segoe UI', -apple-system, Helvetica, Arial, sans-serif; color: #1a2332;
+         background: #f6f5f2; display: flex; justify-content: center; padding: 40px 16px; }
+  .card { background: #fff; border: 1px solid #e4e7ec; border-radius: 12px; padding: 36px; max-width: 560px; width: 100%; }
+  .kicker { text-transform: uppercase; letter-spacing: 2px; font-size: 12px; color: #b23a2e; font-weight: 600; }
+  h1 { font-size: 26px; margin: 4px 0 8px; }
+  p.lead { color: #5b6472; margin-bottom: 24px; font-size: 15px; }
+  label { display: block; font-weight: 600; font-size: 14px; margin: 16px 0 4px; }
+  label .opt { color: #98a1ad; font-weight: 400; }
+  input, select { width: 100%; padding: 10px 12px; border: 1px solid #cdd3db; border-radius: 6px; font-size: 15px; }
+  .row { display: flex; gap: 12px; } .row > div { flex: 1; }
+  .hint { font-size: 12.5px; color: #98a1ad; margin-top: 2px; }
+  button { margin-top: 26px; width: 100%; padding: 13px; background: #b23a2e; color: #fff; border: none;
+           border-radius: 6px; font-size: 16px; font-weight: 600; cursor: pointer; }
+  button:hover { background: #973026; }
+  .demo { text-align: center; margin-top: 14px; font-size: 14px; }
+  .demo a { color: #5b6472; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="kicker">Reputation Defense</div>
+  <h1>Find out what your reviews are costing you</h1>
+  <p class="lead">We pull your Google reviews, compare you to your local competitors, and put a dollar figure on every gap — with the math shown.</p>
+
+  <form method="post" action="/audits">
+    <label>Business name</label>
+    <input name="business_name" required placeholder="Lone Star Smokehouse">
+
+    <label>City / area</label>
+    <input name="city" required placeholder="Plano, TX">
+
+    <label>Business type</label>
+    <select name="vertical">
+      {% for key, v in verticals.items() if key != 'default' %}
+      <option value="{{ key }}">{{ v.label }}</option>
+      {% endfor %}
+      <option value="default" selected>Other / General</option>
+    </select>
+
+    <div class="row">
+      <div>
+        <label>Avg. sale ($) <span class="opt">optional</span></label>
+        <input name="avg_transaction" type="number" step="0.01" min="0" placeholder="benchmark used if blank">
+      </div>
+      <div>
+        <label>Customers / month <span class="opt">optional</span></label>
+        <input name="monthly_customers" type="number" step="1" min="0" placeholder="benchmark used if blank">
+      </div>
+    </div>
+    <div class="hint">Your real numbers make the revenue estimate exact; otherwise we use conservative industry benchmarks and say so in the report.</div>
+
+    <label>Competitors <span class="opt">optional, up to 3</span></label>
+    <input name="competitor1" placeholder="Competitor business name">
+    <input name="competitor2" style="margin-top:8px" placeholder="Competitor business name">
+    <input name="competitor3" style="margin-top:8px" placeholder="Competitor business name">
+
+    <button type="submit">Run my audit</button>
+  </form>
+
+  <div class="demo"><a href="/demo">Or view a sample report first &rarr;</a></div>
+</div>
+</body>
+</html>

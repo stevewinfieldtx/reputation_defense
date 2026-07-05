@@ -1,0 +1,102 @@
+{
+  "executive_summary": "Lone Star Smokehouse has a genuine product problem hiding behind an operations problem: the food earns 5-star loyalty when it's right, but chronic 40-55 minute waits and inconsistent brisket quality are generating a steady stream of 1-2 star reviews that sit unanswered. At 3.9 stars against Hutchins BBQ's 4.7, the business is losing the local-pack comparison on both rating and review volume. The single biggest fix is operational (throughput at the counter), and the cheapest fix is simply answering negative reviews, which currently go ignored. The strengths - burnt ends, ribs, portions and a personable pitmaster - give the business real ammunition to recover with.",
+  "overall_sentiment": "Customers love the food and the people but are being driven away by waits, stock-outs and inconsistency, and the business is silent in the face of criticism.",
+  "clusters": [
+    {
+      "label": "Long waits & slow line",
+      "sentiment": "negative",
+      "share_pct": 67,
+      "summary": "Two out of three negative reviews cite waits of 30-55 minutes, including for online pickup orders. It is the dominant complaint across the entire period analyzed.",
+      "quotes": [
+        "Waited 50 minutes past the time they quoted and the brisket was dry when it finally came.",
+        "Ordered ahead online, still waited 35 minutes at pickup. They lost the order twice.",
+        "45 minutes in line and they were out of ribs AND brisket."
+      ]
+    },
+    {
+      "label": "Inconsistent brisket quality",
+      "sentiment": "negative",
+      "share_pct": 44,
+      "summary": "Repeat customers describe a coin-flip experience - excellent one visit, dry or reheated the next. This directly erodes the food reputation the business depends on.",
+      "quotes": [
+        "Brisket was amazing last month, this time it was dry and cold in the middle. Roll the dice I guess.",
+        "When it's on, it's top 3 in DFW. When it's off, it's gas station BBQ."
+      ]
+    },
+    {
+      "label": "Service attitude under pressure",
+      "sentiment": "negative",
+      "share_pct": 22,
+      "summary": "When the line backs up, staff courtesy breaks down - a rude cashier and an absent manager both appear in low reviews.",
+      "quotes": [
+        "Cashier was flat out rude when I asked about the wait.",
+        "Manager never came out. Done with this place."
+      ]
+    },
+    {
+      "label": "Burnt ends & ribs quality",
+      "sentiment": "positive",
+      "share_pct": 58,
+      "summary": "The signature meats draw superlatives and repeat 30-minute drives. This is the brand asset to build the recovery on.",
+      "quotes": [
+        "Burnt ends are the best in Collin County, period.",
+        "Best ribs I've had since Lockhart. The pitmaster clearly cares."
+      ]
+    },
+    {
+      "label": "Value & portions",
+      "sentiment": "positive",
+      "share_pct": 42,
+      "summary": "Price-to-portion ratio is repeatedly praised and undercuts the premium competitors.",
+      "quotes": [
+        "Half pound of brisket, two sides, drink - under $20. Value is unbeatable.",
+        "The two-meat plate fed me twice."
+      ]
+    },
+    {
+      "label": "Personable pitmaster & staff warmth",
+      "sentiment": "positive",
+      "share_pct": 33,
+      "summary": "The pitmaster and counter staff create memorable moments (birthday pudding, remembering regulars) that show up verbatim in 5-star reviews.",
+      "quotes": [
+        "Pitmaster came out and talked smoke woods with us.",
+        "They threw in free banana pudding and sang. Staff genuinely friendly."
+      ]
+    }
+  ],
+  "spam_suspects": [
+    {
+      "excerpt": "Great food great people!!",
+      "author": "Raj P. / Raj Patel",
+      "reasons": ["near-identical text posted twice within 4 minutes", "same author name variant", "no specific detail"]
+    }
+  ],
+  "top_fixes": [
+    {
+      "title": "Respond to every negative review from the last 12 months, starting this week",
+      "why": "7 of 9 recent negative reviews sit unanswered while Hutchins responds within a day. Each unanswered complaint keeps deterring prospects; responses are free and recover a measurable share of them.",
+      "impact": "high"
+    },
+    {
+      "title": "Fix counter throughput at peak (second register, dedicated pickup shelf)",
+      "why": "Waits are cited in 67% of negative reviews and are the root cause of the rude-service complaints. Online orders waiting 35 minutes defeats the purpose of ordering ahead.",
+      "impact": "high"
+    },
+    {
+      "title": "Standardize brisket hold times to kill the consistency complaints",
+      "why": "Repeat customers describe a coin-flip product. Dry or reheated brisket reviews do more damage to a BBQ brand than any service issue.",
+      "impact": "high"
+    },
+    {
+      "title": "Post sell-out status to Google and the front door in real time",
+      "why": "Customers who wait 45 minutes and then find brisket sold out write the angriest reviews in the dataset. A free status update converts a 1-star into a non-visit.",
+      "impact": "medium"
+    },
+    {
+      "title": "Ask happy dine-in customers for reviews at the register",
+      "why": "Velocity is 2.3 reviews/month vs Hutchins at roughly 10. The 5-star experiences are happening daily but going uncaptured.",
+      "impact": "medium"
+    }
+  ],
+  "competitor_takeaway": "Hutchins BBQ wins on operational consistency and owner engagement - fast line, near-daily review velocity, and responses to most reviews within 24 hours - while Smokey John's shows how responding even to a 3-star review protects a 4.4 rating. Lone Star matches or beats both on food passion and value but loses on everything that happens between the door and the tray."
+}

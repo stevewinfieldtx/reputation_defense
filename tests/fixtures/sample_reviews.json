@@ -1,0 +1,77 @@
+{
+  "business": {
+    "profile": {
+      "name": "Lone Star Smokehouse",
+      "rating": 3.9,
+      "reviews_count": 187,
+      "address": "1420 K Ave, Plano, TX 75074",
+      "category": "Barbecue restaurant"
+    },
+    "reviews": [
+      {"author": "Megan R.", "rating": 1, "text": "Waited 50 minutes past the time they quoted and the brisket was dry when it finally came. Nobody apologized. Won't be back.", "date": "2026-06-28T18:22:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Carlos D.", "rating": 5, "text": "Burnt ends are the best in Collin County, period. Pitmaster came out and talked smoke woods with us. Great portions for the price.", "date": "2026-06-25T13:05:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Ashley T.", "rating": 2, "text": "Line moved so slow. Two registers, one person working. Food was fine but 40 min on a Tuesday lunch is crazy.", "date": "2026-06-19T12:40:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Bill W.", "rating": 4, "text": "Ribs had great bark and pull. Sides are average. Would go back for the ribs alone.", "date": "2026-06-12T19:10:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Priya K.", "rating": 5, "text": "Half pound of brisket, two sides, drink - under $20. Value is unbeatable and the staff remembered us from last time.", "date": "2026-06-05T12:15:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Jordan M.", "rating": 1, "text": "Ordered ahead online, still waited 35 minutes at pickup. They lost the order twice. Chaos at the counter.", "date": "2026-05-30T17:45:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Tina H.", "rating": 3, "text": "Brisket was amazing last month, this time it was dry and cold in the middle. Roll the dice I guess.", "date": "2026-05-21T13:30:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Derek P.", "rating": 5, "text": "Best ribs I've had since Lockhart. The pitmaster clearly cares. Ask for the jalapeno sausage.", "date": "2026-05-11T18:50:00", "owner_response": "Thanks Derek! Jalapeno sausage is back every Friday.", "owner_response_date": "2026-05-13T09:00:00"},
+      {"author": "Sandra L.", "rating": 2, "text": "Cashier was flat out rude when I asked about the wait. 45 minutes for two sandwiches.", "date": "2026-04-27T12:05:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Mike B.", "rating": 4, "text": "Solid Texas BBQ. Brisket good not great, burnt ends excellent. Patio is nice.", "date": "2026-04-15T14:20:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Grace N.", "rating": 5, "text": "Came for a birthday, they threw in free banana pudding and sang. Staff genuinely friendly.", "date": "2026-04-02T19:35:00", "owner_response": "Happy birthday again Grace, see y'all next year!", "owner_response_date": "2026-04-03T10:12:00"},
+      {"author": "Tom S.", "rating": 1, "text": "Third visit, third long wait. 55 minutes this time and they ran out of brisket at 6pm on a Saturday.", "date": "2026-03-22T18:40:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Latasha J.", "rating": 5, "text": "Portions are huge and prices fair. The two-meat plate fed me twice.", "date": "2026-03-10T13:15:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Kevin O.", "rating": 2, "text": "Brisket tasted like it was reheated. Totally different from my first visit which was excellent. Consistency problem.", "date": "2026-02-25T12:55:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Dana F.", "rating": 4, "text": "Really good burnt ends, generous sides. Parking is tight at lunch.", "date": "2026-02-11T12:30:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Raj P.", "rating": 5, "text": "Great food great people!!", "date": "2026-01-30T15:00:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Raj Patel", "rating": 5, "text": "Great food great people!!!", "date": "2026-01-30T15:04:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Emily V.", "rating": 2, "text": "Table wasn't cleaned, floor sticky, and we waited 30 min for counter service. Food ok but the place needs attention.", "date": "2026-01-18T18:25:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Hank G.", "rating": 5, "text": "This is real low-and-slow BBQ. Talked brisket with the owner for ten minutes, you can taste the care.", "date": "2026-01-05T14:45:00", "owner_response": "Appreciate you Hank - come by for the whole-hog special next month.", "owner_response_date": "2026-01-06T08:30:00"},
+      {"author": "Nicole C.", "rating": 3, "text": "Good meat, slow line, average sides. If they fixed the wait this would be a 5.", "date": "2025-12-20T13:05:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Omar Z.", "rating": 1, "text": "Waited an hour, then they got the order wrong. Manager never came out. Done with this place.", "date": "2025-12-08T19:20:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Beth A.", "rating": 4, "text": "Ribs and pulled pork both excellent. Sweet tea is way too sweet even for Texas.", "date": "2025-11-22T12:50:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Sam K.", "rating": 5, "text": "Best value BBQ plate in Plano. Big portions, fair price, friendly folks behind the counter.", "date": "2025-11-05T13:40:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Vic M.", "rating": 2, "text": "Cold brisket, warm soda, 40 minute wait. How is this place still packed?", "date": "2025-10-18T18:05:00", "owner_response": "Vic, that's not the experience we want - email us and we'll make it right.", "owner_response_date": "2025-10-25T11:00:00"},
+      {"author": "Julia R.", "rating": 5, "text": "The burnt ends melt. Staff treated my kids like family. We drive 30 minutes just for this.", "date": "2025-10-02T17:30:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Andre W.", "rating": 3, "text": "Hit or miss. When it's on, it's top 3 in DFW. When it's off, it's gas station BBQ.", "date": "2025-09-14T14:10:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Cheryl B.", "rating": 4, "text": "Great flavor, generous cuts. Lunch rush is brutal, go at 11 or after 1.", "date": "2025-08-28T12:20:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Frank D.", "rating": 1, "text": "45 minutes in line and they were out of ribs AND brisket. Post it on the door if you're out!", "date": "2025-08-10T18:55:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Lauren P.", "rating": 5, "text": "Pitmaster's brisket rub is something special. Friendly crew, big portions.", "date": "2025-07-19T13:25:00", "owner_response": null, "owner_response_date": null},
+      {"author": "Gus T.", "rating": 4, "text": "Very good BBQ, slightly chaotic service. Worth it.", "date": "2025-06-30T12:45:00", "owner_response": null, "owner_response_date": null}
+    ]
+  },
+  "competitors": [
+    {
+      "profile": {"name": "Hutchins BBQ", "rating": 4.7, "reviews_count": 2900, "address": "Frisco, TX", "category": "Barbecue restaurant"},
+      "reviews": [
+        {"author": "A", "rating": 5, "text": "Texas twinkies are unreal.", "date": "2026-06-29T12:00:00", "owner_response": "Thank you!", "owner_response_date": "2026-06-29T15:00:00"},
+        {"author": "B", "rating": 5, "text": "Free banana pudding bar. Line moves fast.", "date": "2026-06-26T13:00:00", "owner_response": "Thanks for coming out!", "owner_response_date": "2026-06-27T09:00:00"},
+        {"author": "C", "rating": 4, "text": "Busy but efficient.", "date": "2026-06-22T12:30:00", "owner_response": null, "owner_response_date": null},
+        {"author": "D", "rating": 5, "text": "Brisket perfection.", "date": "2026-06-18T18:00:00", "owner_response": "Appreciate you!", "owner_response_date": "2026-06-19T08:00:00"},
+        {"author": "E", "rating": 5, "text": "Worth the drive from Dallas.", "date": "2026-06-14T13:20:00", "owner_response": null, "owner_response_date": null},
+        {"author": "F", "rating": 5, "text": "Best BBQ in DFW.", "date": "2026-06-10T12:10:00", "owner_response": "Thank you kindly!", "owner_response_date": "2026-06-10T16:00:00"},
+        {"author": "G", "rating": 4, "text": "Great ribs, pricey.", "date": "2026-06-06T19:00:00", "owner_response": null, "owner_response_date": null},
+        {"author": "H", "rating": 5, "text": "Line out the door and still fast.", "date": "2026-06-01T12:40:00", "owner_response": null, "owner_response_date": null},
+        {"author": "I", "rating": 5, "text": "Staff is incredibly friendly.", "date": "2026-05-27T13:30:00", "owner_response": "Thanks!", "owner_response_date": "2026-05-28T09:30:00"},
+        {"author": "J", "rating": 5, "text": "Consistently excellent every visit.", "date": "2026-05-22T18:15:00", "owner_response": null, "owner_response_date": null},
+        {"author": "K", "rating": 5, "text": "Burnt ends and twinkies. Go.", "date": "2026-05-17T12:20:00", "owner_response": null, "owner_response_date": null},
+        {"author": "L", "rating": 4, "text": "Solid as always.", "date": "2026-05-12T13:10:00", "owner_response": null, "owner_response_date": null},
+        {"author": "M", "rating": 5, "text": "They handled a 20-person party without blinking.", "date": "2026-05-06T17:45:00", "owner_response": "Thanks for celebrating with us!", "owner_response_date": "2026-05-07T10:00:00"},
+        {"author": "N", "rating": 5, "text": "Banana pudding alone is worth it.", "date": "2026-04-29T12:00:00", "owner_response": null, "owner_response_date": null},
+        {"author": "O", "rating": 5, "text": "Never had a bad cut here.", "date": "2026-04-20T12:00:00", "owner_response": null, "owner_response_date": null},
+        {"author": "P", "rating": 5, "text": "Fast line, hot food, kind staff.", "date": "2026-04-12T13:00:00", "owner_response": null, "owner_response_date": null}
+      ]
+    },
+    {
+      "profile": {"name": "Smokey John's Bar-B-Que", "rating": 4.4, "reviews_count": 850, "address": "Dallas, TX", "category": "Barbecue restaurant"},
+      "reviews": [
+        {"author": "Q", "rating": 5, "text": "Legendary spot, great people.", "date": "2026-06-20T12:00:00", "owner_response": "Thank you, family!", "owner_response_date": "2026-06-21T09:00:00"},
+        {"author": "R", "rating": 4, "text": "Good ribs, friendly service.", "date": "2026-06-08T13:00:00", "owner_response": null, "owner_response_date": null},
+        {"author": "S", "rating": 5, "text": "The history and the flavor.", "date": "2026-05-25T12:30:00", "owner_response": "We appreciate you!", "owner_response_date": "2026-05-26T10:00:00"},
+        {"author": "T", "rating": 4, "text": "Solid lunch, quick line.", "date": "2026-05-10T12:15:00", "owner_response": null, "owner_response_date": null},
+        {"author": "U", "rating": 5, "text": "Catered our office event, flawless.", "date": "2026-04-24T11:30:00", "owner_response": "Thanks for having us!", "owner_response_date": "2026-04-25T09:00:00"},
+        {"author": "V", "rating": 3, "text": "Brisket a bit dry today.", "date": "2026-04-08T13:00:00", "owner_response": "Come back and we'll make it right.", "owner_response_date": "2026-04-09T08:30:00"}
+      ]
+    }
+  ]
+}

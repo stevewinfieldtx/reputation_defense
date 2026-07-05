@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit in progress — {{ audit.business_name }}</title>
+{% if audit.status not in ('complete', 'error') %}<meta http-equiv="refresh" content="5">{% endif %}
+<style>
+  body { font: 16px/1.6 'Segoe UI', Helvetica, Arial, sans-serif; color: #1a2332; background: #f6f5f2;
+         display: flex; justify-content: center; padding-top: 12vh; }
+  .card { background: #fff; border: 1px solid #e4e7ec; border-radius: 12px; padding: 40px; max-width: 480px; text-align: center; }
+  h1 { font-size: 22px; margin-bottom: 8px; }
+  .muted { color: #5b6472; font-size: 15px; }
+  .steps { text-align: left; margin: 24px auto 0; max-width: 300px; list-style: none; padding: 0; }
+  .steps li { padding: 6px 0 6px 30px; position: relative; color: #98a1ad; }
+  .steps li.done::before { content: '\2713'; color: #1e7f4f; position: absolute; left: 4px; font-weight: 700; }
+  .steps li.now { color: #1a2332; font-weight: 600; }
+  .steps li.now::before { content: '\25CF'; color: #b23a2e; position: absolute; left: 4px; }
+  a.btn { display: inline-block; margin-top: 24px; padding: 12px 28px; background: #b23a2e; color: #fff;
+          border-radius: 6px; text-decoration: none; font-weight: 600; }
+  pre { text-align: left; font-size: 12px; background: #f6f5f2; padding: 12px; border-radius: 6px;
+        overflow-x: auto; max-width: 420px; }
+</style>
+</head>
+<body>
+<div class="card">
+  {% if audit.status == 'error' %}
+    <h1>Audit failed</h1>
+    <p class="muted">Something went wrong for {{ audit.business_name }}:</p>
+    <pre>{{ (audit.error or '')[:600] }}</pre>
+    <a class="btn" href="/">Try again</a>
+  {% elif audit.status == 'complete' %}
+    <h1>Your audit is ready</h1>
+    <p class="muted">{{ audit.business_name }}, {{ audit.city }}</p>
+    <a class="btn" href="/reports/{{ audit.id }}">Open the report &rarr;</a>
+  {% else %}
+    <h1>Auditing {{ audit.business_name }}&hellip;</h1>
+    <p class="muted">This usually takes 2&ndash;5 minutes. The page refreshes itself.</p>
+    {% set order = {'pending': 0, 'collecting': 1, 'analyzing': 2} %}
+    {% set pos = order.get(audit.status, 0) %}
+    <ul class="steps">
+      <li class="{{ 'done' if pos > 0 else 'now' }}">Audit queued</li>
+      <li class="{{ 'done' if pos > 1 else ('now' if pos == 1 else '') }}">Collecting Google reviews</li>
+      <li class="{{ 'now' if pos == 2 else '' }}">AI analysis &amp; revenue math</li>
+      <li>Report ready</li>
+    </ul>
+  {% endif %}
+</div>
+</body>
+</html>

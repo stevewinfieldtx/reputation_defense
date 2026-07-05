@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "repdefense",
+      "runtimeExecutable": "C:\\Users\\SteveWinfiel_12vs805\\Documents\\Reputation_Defense\\venv\\Scripts\\uvicorn.exe",
+      "runtimeArgs": ["app.main:app", "--port", "8123"],
+      "cwd": "C:\\Users\\SteveWinfiel_12vs805\\Documents\\Reputation_Defense",
+      "port": 8123
+    }
+  ]
+}
