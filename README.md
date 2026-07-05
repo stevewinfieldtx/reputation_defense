@@ -41,12 +41,14 @@ SQLite (`repdefense.db`) is used when `DATABASE_URL` is unset. Tests: `venv\Scri
 1. Service builds from the **Dockerfile at repo root** (railway.json pins this).
 2. The container binds `$PORT` (Railway injects it) — do not hardcode a port.
 3. Attach a Railway Postgres and set `DATABASE_URL` from it.
-4. Set `ANTHROPIC_API_KEY`, `OUTSCRAPER_API_KEY`, `ADMIN_TOKEN`.
+4. Set `OPENROUTER_API_KEY`, `OUTSCRAPER_API_KEY`, `ADMIN_TOKEN`.
 
 ## Environment
 
 See `.env.example`. Without `OUTSCRAPER_API_KEY` live collection fails cleanly
-(demo still works); without `ANTHROPIC_API_KEY` live analysis fails cleanly.
+(demo still works); without `OPENROUTER_API_KEY` live analysis fails cleanly.
+LLM calls go to any OpenAI-compatible endpoint (`LLM_BASE_URL`, default OpenRouter)
+with any model id (`LLM_MODEL`, default `anthropic/claude-sonnet-4.5`).
 
 ## Routes
 

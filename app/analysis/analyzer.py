@@ -1,17 +1,30 @@
 import json
 
-import anthropic
+import httpx
 
 from ..config import settings
 from . import prompts
 from .schemas import ReviewAnalysis
 
 
-def _client() -> anthropic.Anthropic:
-    kwargs = {"api_key": settings.anthropic_api_key}
-    if settings.anthropic_base_url:
-        kwargs["base_url"] = settings.anthropic_base_url
-    return anthropic.Anthropic(**kwargs)
+def _chat(messages: list[dict]) -> str:
+    """OpenAI-compatible chat call (OpenRouter by default)."""
+    resp = httpx.post(
+        f"{settings.llm_base_url.rstrip('/')}/chat/completions",
+        headers={
+            "Authorization": f"Bearer {settings.openrouter_api_key}",
+            "HTTP-Referer": "https://reputationdefense.local",
+            "X-Title": "Reputation Defense",
+        },
+        json={
+            "model": settings.llm_model,
+            "max_tokens": 4000,
+            "messages": [{"role": "system", "content": prompts.SYSTEM}] + messages,
+        },
+        timeout=300,
+    )
+    resp.raise_for_status()
+    return resp.json()["choices"][0]["message"]["content"]
 
 
 def _format_reviews(reviews: list[dict], limit: int = 150, max_chars: int = 400) -> str:
@@ -54,18 +67,11 @@ def analyze(business_name: str, vertical_label: str, metrics: dict,
         reviews_block=_format_reviews(business_data.get("reviews", [])),
         competitor_block=_format_competitors(competitor_data),
     )
-    client = _client()
     messages = [{"role": "user", "content": prompt}]
 
     last_err = None
     for _ in range(2):
-        response = client.messages.create(
-            model=settings.anthropic_model,
-            max_tokens=4000,
-            system=prompts.SYSTEM,
-            messages=messages,
-        )
-        raw = response.content[0].text
+        raw = _chat(messages)
         try:
             return ReviewAnalysis.model_validate(_extract_json(raw)).model_dump()
         except Exception as err:  # invalid JSON or schema mismatch -> one corrective retry
