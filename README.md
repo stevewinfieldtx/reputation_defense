@@ -72,3 +72,4 @@ Against a $197 audit price point.
 Yelp/Facebook collectors (drop into `app/collectors/` per `base.py` contract),
 monthly "Guardian" monitoring & alerts, AI review-response drafting, Stripe
 payments, multi-user auth, per-client white-label theming.
+# reputation_defense
